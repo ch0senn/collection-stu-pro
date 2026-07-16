@@ -1,34 +1,36 @@
-import { Database } from "./database.js";
-
-const database = new Database();
+import { database } from "./database.js";
 
 export function initialiseFeature001() {
 
     const tbody = document.querySelector("#collectionTable tbody");
 
-    const version = document.getElementById("version");
+    const project = database.getProject();
 
-    version.textContent =
+    document.getElementById("version").textContent =
         "Version " + window.collectionStudio.version();
 
     function refresh() {
 
         tbody.innerHTML = "";
 
-        database.all().forEach((collection,index)=>{
+        project.collections.forEach((collection, index) => {
 
-            const row=document.createElement("tr");
+            const row = document.createElement("tr");
 
-            row.innerHTML=`
+            row.innerHTML = `
                 <td>${collection.name}</td>
                 <td>${collection.images}</td>
             `;
 
-            row.onclick=()=>{
+            row.onclick = () => {
 
-                document.getElementById("collectionName").value=collection.name;
-                document.getElementById("collectionDescription").value=collection.description;
-                tbody.dataset.selected=index;
+                tbody.dataset.selected = index;
+
+                document.getElementById("collectionName").value =
+                    collection.name;
+
+                document.getElementById("collectionDescription").value =
+                    collection.description;
 
             };
 
@@ -38,60 +40,62 @@ export function initialiseFeature001() {
 
     }
 
-    document
-        .getElementById("newCollection")
-        .onclick=()=>{
+    document.getElementById("newCollection").onclick = () => {
 
-            database.add({
+        database.addCollection({
 
-                name:"New Collection",
-                description:"",
-                images:0
+            name: "New Collection",
 
-            });
+            description: "",
 
-            refresh();
+            images: 0
 
-        };
+        });
 
-    document
-        .getElementById("saveCollection")
-        .onclick=()=>{
+        refresh();
 
-            const selected=tbody.dataset.selected;
+    };
 
-            if(selected===undefined)
-                return;
+    document.getElementById("saveCollection").onclick = () => {
 
-            database.collections[selected].name=
-                document.getElementById("collectionName").value;
+        const index = Number(tbody.dataset.selected);
 
-            database.collections[selected].description=
-                document.getElementById("collectionDescription").value;
+        if (isNaN(index))
+            return;
 
-            refresh();
+        database.updateCollection(index, {
 
-        };
+            ...project.collections[index],
 
-    document
-        .getElementById("deleteCollection")
-        .onclick=()=>{
+            name: document.getElementById("collectionName").value,
 
-            const selected=tbody.dataset.selected;
+            description:
+                document.getElementById("collectionDescription").value
 
-            if(selected===undefined)
-                return;
+        });
 
-            database.remove(selected);
+        refresh();
 
-            tbody.dataset.selected="";
+    };
 
-            document.getElementById("collectionName").value="";
-            document.getElementById("collectionDescription").value="";
+    document.getElementById("deleteCollection").onclick = () => {
 
-            refresh();
+        const index = Number(tbody.dataset.selected);
 
-        };
+        if (isNaN(index))
+            return;
+
+        database.removeCollection(index);
+
+        tbody.dataset.selected = "";
+
+        document.getElementById("collectionName").value = "";
+
+        document.getElementById("collectionDescription").value = "";
+
+        refresh();
+
+    };
 
     refresh();
 
