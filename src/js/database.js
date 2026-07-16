@@ -1,27 +1,5 @@
-export class Database {
+import { ProjectStore } from "../data/ProjectStore.js";
 
-    constructor() {
+export const database = new ProjectStore();
 
-        this.collections = [];
-
-    }
-
-    add(collection) {
-
-        this.collections.push(collection);
-
-    }
-
-    remove(index) {
-
-        this.collections.splice(index,1);
-
-    }
-
-    all() {
-
-        return this.collections;
-
-    }
-
-}
+database.load();
