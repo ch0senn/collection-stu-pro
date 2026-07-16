@@ -1,16 +1,17 @@
 {
   "name": "collection-studio-pro",
   "version": "0.1.0",
-  "private": true,
-  "description": "Collection Studio Pro",
-  "main": "src/main.js",
+  "description": "Professional NFT Collection Builder",
   "author": "",
+  "private": true,
   "license": "MIT",
+  "main": "src/main/main.js",
+  "type": "commonjs",
   "scripts": {
-    "dev": "electron .",
     "start": "electron .",
-    "build": "electron-builder",
-    "dist": "electron-builder --win"
+    "dev": "electron .",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir"
   },
   "dependencies": {
     "electron-store": "^10.1.0",
@@ -23,14 +24,13 @@
   "build": {
     "appId": "com.collectionstudio.pro",
     "productName": "Collection Studio Pro",
-    "directories": {
-      "buildResources": "build",
-      "output": "dist"
-    },
     "files": [
       "src/**/*",
       "package.json"
     ],
+    "directories": {
+      "output": "dist"
+    },
     "win": {
       "target": "nsis"
     }
