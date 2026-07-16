@@ -1,0 +1,133 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    background:#1f2125;
+    color:white;
+    height:100vh;
+}
+
+#app{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    grid-template-rows:70px 1fr;
+    height:100vh;
+}
+
+header{
+    grid-column:1/3;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+    background:#2a2d33;
+    border-bottom:1px solid #3b3f45;
+}
+
+.title{
+    font-size:24px;
+    font-weight:700;
+}
+
+.version{
+    opacity:.6;
+}
+
+aside{
+    background:#25282d;
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+    gap:10px;
+}
+
+.nav{
+    padding:14px;
+    border:none;
+    color:white;
+    background:#333840;
+    cursor:pointer;
+    border-radius:6px;
+    text-align:left;
+}
+
+.nav.active{
+    background:#0b84ff;
+}
+
+main{
+    display:flex;
+    flex-direction:column;
+}
+
+.toolbar{
+    padding:15px;
+    background:#2b2d32;
+    border-bottom:1px solid #3b3f45;
+}
+
+.toolbar button{
+    padding:10px 20px;
+    margin-right:10px;
+}
+
+.content{
+    display:grid;
+    grid-template-columns:1fr 400px;
+    gap:20px;
+    padding:20px;
+    flex:1;
+}
+
+.panel{
+    background:#2b2e34;
+    border-radius:8px;
+    padding:20px;
+}
+
+.panel h2{
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #444;
+}
+
+tbody tr:hover{
+    background:#363a41;
+    cursor:pointer;
+}
+
+label{
+    display:block;
+    margin-bottom:20px;
+}
+
+input,
+textarea{
+    width:100%;
+    margin-top:8px;
+    padding:10px;
+    background:#1e2024;
+    color:white;
+    border:1px solid #444;
+}
+
+textarea{
+    resize:vertical;
+    height:160px;
+}
+
+button{
+    cursor:pointer;
+}
