@@ -131,3 +131,13 @@ textarea{
 button{
     cursor:pointer;
 }
+
+#projectName{
+
+    color:#9ca3af;
+
+    margin-top:6px;
+
+    font-size:14px;
+
+}
